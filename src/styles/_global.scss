@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+@import "mixins";
+
+* {
+  transition : var(--transition-bg-color-primary), var(--transition-color-primary);
+}
+
+html {
+  font-size   : var(--font-size-primary);
+  font-family : 'Poppins', sans-serif;
+
+  color       : var(--color-font-primary);
+
+  @include breakpoint(extra-sm) {
+    font-size : var(--font-size-mobile);
+  }
+}
+
+body {
+  background-color : var(--color-bg-primary);
+}
+
+button {
+  background : var(--color-bg-btn-primary);
+}
