@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "paths": {
-      "@components/*": [
-        "./src/components/*"
-      ],
       "@shared/*": [
         "./src/shared/*"
       ],
@@ -18,6 +15,9 @@
       ],
       "@layouts": [
         "./src/layouts"
+      ],
+      "@components": [
+        "./src/components"
       ]
     }
   }

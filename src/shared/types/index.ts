@@ -1,1 +1,2 @@
-export * from './non-function-properties.type.ts';
+export * from './app-router.type';
+export * from './non-function-properties.type';

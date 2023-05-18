@@ -29,3 +29,8 @@
     }
   }
 }
+
+
+@mixin transition-primary($type, $delay: 0) {
+  transition : $type var(--transition-duration-primary) var(--transition-timing-primary) $delay;
+}
