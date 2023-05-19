@@ -61,22 +61,66 @@
   --color-font-primary          : var(--color-gray-800);
   --color-bg-primary            : var(--color-white);
 
+  // --------------- Z-index
+  --zindex-dropdown             : 1000;
+  --zindex-sticky               : 1020;
+  --zindex-fixed                : 1030;
+  --zindex-modal-backdrop       : 1040;
+  --zindex-modal                : 1050;
+  --zindex-popover              : 1060;
+  --zindex-tooltip              : 1070;
+
   // --------------- Transitions
   --transition-duration-primary : 0.3s;
   --transition-timing-primary   : ease;
   --transition-all-primary      : all var(--transition-duration-primary) var(--transition-timing-primary);
-  --transition-bg-color-primary : background-color var(--transition-duration-primary) var(--transition-timing-primary);
+  --transition-bg-color-primary : background-color 0.15s var(--transition-timing-primary);
   --transition-color-primary    : color 0.5ms var(--transition-timing-primary);
 
 
   // --------------- Components
   --color-bg-btn-primary        : var(--color-primary-500);
   --color-font-btn-primary      : var(--color-black-1);
+
+  --color-bg-field-primary      : var(--color-gray-100);
+  --color-field-primary         : var(--color-gray-800);
+
+  --color-icon-active           : var(--color-primary-500);
+  --color-icon-primary          : var(--color-gray-500);
+
+
+  // --------------- Layout
+  --width-sidebar-primary       : 260px;
+  --width-sidebar-collapsed     : 60px;
+
+  --width-header-primary        : calc(100% - var(--width-sidebar-primary));
+  --width-header-collapsed      : calc(100% - var(--width-sidebar-collapsed));
+  --gap-header-primary          : 24px;
+  --height-header-primary       : 44px;
+
+  --top-gap-layout-primary      : calc(var(--height-header-primary) + var(--gap-header-primary));
+  --vertical-gap-layout-primary : 28px;
+
+  --gap-main-layout-priamry     : var(--top-gap-layout-primary) var(--vertical-gap-layout-primary) 0 calc(var(--width-sidebar-primary) + var(--vertical-gap-layout-primary));
+  --gap-main-layout-collapsed   : var(--top-gap-layout-primary) var(--vertical-gap-layout-primary) 0 calc(var(--width-sidebar-collapsed) + var(--vertical-gap-layout-primary));
+
+  --color-bg-sidebar            : var(--color-gray-25);
+  --color-bg-link-active        : var(--color-gray-200);
+  --color-link-active           : var(--color-gray-800);
 }
 
 
 // --------------- Dark theme
 :root[data-theme=dark] {
-  --color-bg-primary   : var(--color-black-1);
-  --color-font-primary : var(--color-white);
+  --color-bg-primary       : var(--color-black-1);
+  --color-font-primary     : var(--color-white);
+
+  // --------------- Components
+  --color-bg-field-primary : var(--color-black-2);
+  --color-field-primary    : var(--color-gray-600);
+
+  // --------------- Layout
+  --color-bg-sidebar       : var(--color-black-3);
+  --color-bg-link-active   : var(--color-black-4);
+  --color-link-active      : var(--color-white);
 }

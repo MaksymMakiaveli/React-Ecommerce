@@ -1,0 +1,21 @@
+.theme-action {
+  display : inline-block;
+
+
+  cursor  : pointer;
+
+  &-button {
+    background : transparent;
+    font-size  : 24px;
+  }
+}
+
+.theme-action-active {
+
+  .theme-action-button {
+
+    svg {
+      color : var(--color-primary-500);
+    }
+  }
+}

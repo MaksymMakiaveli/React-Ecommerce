@@ -3,8 +3,8 @@ import type { SVGProps } from 'react';
 export const SidebarHandlerIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={20}
-    height={20}
+    width="1em"
+    height="1em"
     fill="#919EAB"
     color="#919EAB"
     {...props}

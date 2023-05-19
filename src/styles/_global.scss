@@ -11,9 +11,9 @@ html {
 
   color       : var(--color-font-primary);
 
-  @include breakpoint(extra-sm) {
-    font-size : var(--font-size-mobile);
-  }
+  //@include breakpoint(extra-sm) {
+  //  font-size : var(--font-size-mobile);
+  //}
 }
 
 body {
@@ -22,4 +22,8 @@ body {
 
 button {
   background : var(--color-bg-btn-primary);
+}
+
+svg {
+  font-size : 24px;
 }

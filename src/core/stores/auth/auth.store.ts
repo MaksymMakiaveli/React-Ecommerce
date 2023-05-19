@@ -1,22 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {tokenStorageService} from '@core/services/TokenStorage';
-import {create} from 'zustand';
-import {devtools} from 'zustand/middleware';
-import {immer} from 'zustand/middleware/immer';
+import { tokenStorageService } from '@core/services/TokenStorage';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
-import type {NonFunctionProperties} from '@shared/types';
+import { create, resetAllStores } from '../_utils';
 
-interface AuthState {
+type State = {
   isLoginLoading: boolean;
 
   error: string | null;
 
   isLoggedIn: boolean;
+};
 
+type Action = {
   login: (email: string, password: string) => void;
-}
 
-const initialState: NonFunctionProperties<AuthState> = {
+  logout: () => void;
+};
+
+export type AuthState = State & Action;
+
+const initialState: State = {
   error: null,
   isLoginLoading: false,
   isLoggedIn: !!tokenStorageService.getToken(),
@@ -29,6 +33,12 @@ export const useAuthStore = create<AuthState>()(
       login: (email, password) => {
         console.log(email, password);
         set({ isLoginLoading: true });
+      },
+
+      logout: () => {
+        console.log('logout');
+
+        resetAllStores();
       },
     })),
     { name: 'AuthStore' }

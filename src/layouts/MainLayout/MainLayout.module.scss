@@ -1,3 +1,19 @@
 .main-layout {
   display : flex;
+
+  .middle-section {
+    width      : 100%;
+    min-height : 100vh;
+
+    padding    : var(--gap-main-layout-priamry);
+
+
+    transition : all var(--transition-duration-primary) var(--transition-timing-primary);
+  }
+}
+
+.main-layout--collapsed {
+  .middle-section {
+    padding : var(--gap-main-layout-collapsed);
+  }
 }

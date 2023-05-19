@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from '@core/stores/_utils';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
@@ -6,6 +6,10 @@ type Size = {
   sidebar: {
     width: number;
     collapsedWidth: number;
+  };
+  header: {
+    height: number;
+    gap: number;
   };
 };
 
@@ -34,6 +38,10 @@ const initialState: State = {
     sidebar: {
       width: 260,
       collapsedWidth: collapsedSidebarWidth,
+    },
+    header: {
+      height: 44,
+      gap: 14,
     },
   },
 };

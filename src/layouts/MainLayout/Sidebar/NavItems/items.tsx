@@ -1,5 +1,5 @@
 import { routes } from '@core/routes';
-import { HouseIcon } from '@shared/UI';
+import { HeartIcon, HouseIcon } from '@shared/UI';
 
 import type { ReactNode } from 'react';
 
@@ -19,9 +19,9 @@ export const items: ItemType[] = [
   },
 
   {
-    to: '/home',
-    label: 'Home2',
-    key: 'home2',
-    icon: <HouseIcon />,
+    to: '/favorite',
+    label: 'Favorite',
+    key: 'favorite',
+    icon: <HeartIcon />,
   },
 ];

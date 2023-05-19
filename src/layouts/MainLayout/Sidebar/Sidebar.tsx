@@ -8,18 +8,16 @@ import { NavItems } from './NavItems';
 import { TopSidebar } from './TopSidebar';
 
 import type { MainLayoutStore } from '@core/stores';
-import type { CSSProperties } from 'react';
 
 import styles from './Sidebar.module.scss';
 
 const mainLayoutSelector = (state: MainLayoutStore) =>
-  [state.size, state.isCollapsed, state.sizeMap, state.onChangeSize, state.setIsCollapsed] as const;
+  [state.size, state.isCollapsed, state.onChangeSize, state.setIsCollapsed] as const;
 
 export const Sidebar = memo(() => {
   const { width } = useWindowSize();
 
-  const [size, isCollapsed, sizeMap, onChangeSize, setIsCollapsed] =
-    useMainLayoutStore(mainLayoutSelector);
+  const [size, isCollapsed, onChangeSize, setIsCollapsed] = useMainLayoutStore(mainLayoutSelector);
 
   const classes = cl(styles.sidebar, {
     [styles.sidebarCollapsed]: isCollapsed,
@@ -44,12 +42,8 @@ export const Sidebar = memo(() => {
     }
   }, [width, size]);
 
-  const sidebarStyles: CSSProperties = {
-    maxWidth: isCollapsed ? sizeMap.sidebar.collapsedWidth : sizeMap.sidebar.width,
-  };
-
   return (
-    <div className={classes} style={sidebarStyles}>
+    <div className={classes}>
       <TopSidebar />
       <NavItems />
     </div>

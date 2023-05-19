@@ -5,7 +5,7 @@ export const useGetClassWithPrefix = (className: string, customPrefix?: string) 
 
   const appendClass = (childClass: string | string[]) => {
     if (Array.isArray(childClass)) {
-      return `${rootClass}${childClass.join('-')}`;
+      return childClass.map((child) => `${rootClass}${child}`).join(' ');
     }
 
     return `${rootClass}${childClass}`;
