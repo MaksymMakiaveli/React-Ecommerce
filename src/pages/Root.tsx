@@ -1,12 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { ProtectedRoute } from '@components';
 import { routes } from '@core/routes';
-import { MainLayout } from '@layouts';
+import { AuthLayout, MainLayout } from '@layouts';
 
 const router = createBrowserRouter([
   {
     path: routes.home.root,
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
 
     children: [
       {
@@ -16,6 +21,18 @@ const router = createBrowserRouter([
       {
         path: routes.cart.root,
         element: <h1>Cart</h1>,
+      },
+    ],
+  },
+
+  {
+    path: routes.auth.root,
+    element: <AuthLayout />,
+
+    children: [
+      {
+        path: routes.auth.signin.root,
+        element: <h1>Sign In</h1>,
       },
     ],
   },

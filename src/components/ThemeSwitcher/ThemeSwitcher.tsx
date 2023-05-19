@@ -4,15 +4,15 @@ import cl from 'classnames';
 
 import type { ThemeStore } from '@core/stores';
 
-import styles from './ThemeAction.module.scss';
+import styles from './ThemeSwitcher.module.scss';
 
 const themeSelector = (state: ThemeStore) => [state.currentTheme, state.setCurrentTheme] as const;
 
-export const ThemeAction = () => {
+export const ThemeSwitcher = () => {
   const [currentTheme, setCurrentTheme] = useThemeStore(themeSelector);
 
-  const classes = cl(styles.themeAction, {
-    [styles.themeActionActive]: currentTheme === 'dark',
+  const classes = cl(styles.themeSwitcher, {
+    [styles.themeSwitcherActive]: currentTheme === 'dark',
   });
 
   const handleTheme = () => {
@@ -23,7 +23,7 @@ export const ThemeAction = () => {
 
   return (
     <div className={classes}>
-      <span className={styles.themeActionButton} onClick={handleTheme}>
+      <span className={styles.themeSwitcherButton} onClick={handleTheme}>
         <MoonIcon />
       </span>
     </div>

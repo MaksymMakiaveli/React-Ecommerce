@@ -1,13 +1,14 @@
+import { ThemeSwitcher } from '@components';
+
 import { CartAction } from './CartAction';
 import { LogoutAction } from './LogoutAction';
-import { ThemeAction } from './ThemeAction';
 
 import styles from './ActionsSection.module.scss';
 
 export const ActionsSection = () => {
   return (
     <div className={styles.actionsSection}>
-      <ThemeAction />
+      <ThemeSwitcher />
       <CartAction />
       <LogoutAction />
     </div>

@@ -1,4 +1,4 @@
-.theme-action {
+.theme-switcher {
   display : inline-block;
 
 
@@ -10,10 +10,9 @@
   }
 }
 
-.theme-action-active {
+.theme-switcher-active {
 
-  .theme-action-button {
-
+  .theme-switcher-button {
     svg {
       color : var(--color-primary-500);
     }
