@@ -1,4 +1,4 @@
-import _create from 'zustand';
+import { create as _create } from 'zustand';
 
 import type { StateCreator } from 'zustand';
 

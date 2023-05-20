@@ -4,6 +4,8 @@ import { ProtectedRoute } from '@components';
 import { routes } from '@core/routes';
 import { AuthLayout, MainLayout } from '@layouts';
 
+import { authRoute } from './Auth';
+
 const router = createBrowserRouter([
   {
     path: routes.home.root,
@@ -29,12 +31,7 @@ const router = createBrowserRouter([
     path: routes.auth.root,
     element: <AuthLayout />,
 
-    children: [
-      {
-        path: routes.auth.signin.root,
-        element: <h1>Sign In</h1>,
-      },
-    ],
+    children: authRoute,
   },
 ]);
 

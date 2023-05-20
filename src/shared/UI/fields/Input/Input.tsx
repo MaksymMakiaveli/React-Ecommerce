@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { useGetClassWithPrefix } from '@shared/UI/_hooks';
 import cl from 'classnames';
 
@@ -9,16 +11,16 @@ export type InputProps = HTMLAttributes<HTMLInputElement> & {
   prefixIcon?: ReactElement;
 };
 
-export const Input = (props: InputProps) => {
-  const { prefixIcon, ...restProps } = props;
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { prefixIcon, className, ...restProps } = props;
 
   const { rootClass, appendClass } = useGetClassWithPrefix('input');
 
-  const classes = cl(rootClass, {
+  const classes = cl(rootClass, className, {
     [appendClass('--with-prefix')]: prefixIcon,
   });
 
-  const simpleElement = <input className={classes} {...restProps} />;
+  const simpleElement = <input className={classes} ref={ref} {...restProps} />;
 
   const prefixElement = prefixIcon ? (
     <span className={appendClass('-prefix')}>{prefixIcon}</span>
@@ -34,4 +36,4 @@ export const Input = (props: InputProps) => {
   const element = prefixIcon ? withPrefix : simpleElement;
 
   return <>{element}</>;
-};
+});

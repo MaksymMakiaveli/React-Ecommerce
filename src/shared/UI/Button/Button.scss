@@ -1,0 +1,30 @@
+.ui-button {
+  width         : 100%;
+
+  padding       : 1rem 2.4rem;
+
+  color         : var(--color-black-1);
+
+  border-radius : 100px;
+}
+
+.ui-button--full {
+}
+
+.ui-button--sm {
+  max-width      : 80px;
+  padding-top    : 1.2rem;
+  padding-bottom : 1.2rem;
+}
+
+.ui-button--md {
+  max-width      : 160px;
+  padding-top    : 1.6rem;
+  padding-bottom : 1.6rem;
+}
+
+.ui-button--lg {
+  max-width      : 220px;
+  padding-top    : 2.4rem;
+  padding-bottom : 2.4rem;
+}

@@ -9,6 +9,8 @@ import { Header } from './Header';
 
 import type { AuthState } from '@core/stores';
 
+import styles from './Auth.module.scss';
+
 const authSelector = (state: AuthState) => [state.isLoggedIn];
 
 export const AuthLayout = () => {
@@ -29,7 +31,7 @@ export const AuthLayout = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.authLayout}>
       <Header />
       <Content />
     </div>

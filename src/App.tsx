@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import { useThemeStore } from '@core/stores';
 import { localStorageService } from '@shared/services';
+import { Loader } from '@shared/UI';
 
 import { Root } from './pages';
 
@@ -24,5 +25,9 @@ export function App() {
     }
   }, []);
 
-  return <Root />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <Root />
+    </Suspense>
+  );
 }

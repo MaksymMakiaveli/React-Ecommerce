@@ -16,7 +16,21 @@ html {
   //}
 }
 
-body {
+/* Apply a light color scheme */
+@media (prefers-color-scheme : light) {
+  body, #root {
+    background-color : var(--color-white);
+  }
+}
+
+/* Apply a dark color scheme */
+@media (prefers-color-scheme : dark) {
+  body, #root {
+    background-color : var(--color-black-1);
+  }
+}
+
+body, #root {
   background-color : var(--color-bg-primary);
 }
 
