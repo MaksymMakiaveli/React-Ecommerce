@@ -34,3 +34,10 @@
 @mixin transition-primary($type, $delay: 0) {
   transition : $type var(--transition-duration-primary) var(--transition-timing-primary) $delay;
 }
+
+@mixin truncate() {
+  max-width     : 99.99%;
+  white-space   : nowrap;
+  text-overflow : ellipsis;
+  overflow      : clip;
+}

@@ -9,4 +9,8 @@
     display         : flex;
     justify-content : space-between;
   }
+
+  .button-wrapper {
+    align-self : flex-end;
+  }
 }

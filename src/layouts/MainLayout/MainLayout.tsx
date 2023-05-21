@@ -25,7 +25,9 @@ export const MainLayout = () => {
 
       <div className={styles.middleSection}>
         <Header />
-        <Outlet />
+        <div className={styles.contentSection}>
+          <Outlet />
+        </div>
       </div>
     </div>
   );

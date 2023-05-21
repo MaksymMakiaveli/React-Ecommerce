@@ -10,6 +10,10 @@
 
     transition : all var(--transition-duration-primary) var(--transition-timing-primary);
   }
+
+  .content-section {
+    padding-top : 8rem;
+  }
 }
 
 .main-layout--collapsed {

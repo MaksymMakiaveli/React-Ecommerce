@@ -2,7 +2,8 @@
 @import "mixins";
 
 * {
-  transition : var(--transition-bg-color-primary), var(--transition-color-primary);
+  //transition : var(--transition-bg-color-primary), var(--transition-color-primary);
+
 }
 
 html {
@@ -11,9 +12,6 @@ html {
 
   color       : var(--color-font-primary);
 
-  //@include breakpoint(extra-sm) {
-  //  font-size : var(--font-size-mobile);
-  //}
 }
 
 /* Apply a light color scheme */
@@ -36,6 +34,11 @@ body, #root {
 
 button {
   background : var(--color-bg-btn-primary);
+
+  &:disabled {
+    background : var(--color-gray-50);
+    cursor     : not-allowed;
+  }
 }
 
 svg {

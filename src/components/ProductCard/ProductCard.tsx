@@ -35,7 +35,9 @@ export const ProductCard = (props: CardProps) => {
           rating={product.rating}
           stock={product.stock}
         />
-        {customButton ? customButton : <BuyButton onClickBuy={handleClickBuy} />}
+        <div className={styles.buttonWrapper}>
+          {customButton ? customButton : <BuyButton onClickBuy={handleClickBuy} />}
+        </div>
       </div>
     </div>
   );

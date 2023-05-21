@@ -22,7 +22,6 @@ export const create = (<T extends unknown>(f: StateCreator<T> | undefined) => {
 
 export const resetAllStores = () => {
   for (const resetter of resetters) {
-    console.log(resetters);
     resetter();
   }
 };

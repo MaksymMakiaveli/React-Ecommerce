@@ -25,8 +25,6 @@ export const Loader = memo((props: LoaderProps) => {
 
   const classes = cl(rootClass, className, appendClass(`--${size}`));
 
-  console.log('spinning', spinning);
-
   return (
     <div className={appendClass('-wrapper')}>
       {spinning && (

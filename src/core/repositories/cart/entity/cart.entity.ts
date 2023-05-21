@@ -1,4 +1,4 @@
-import type { ProductCartEntity } from './product-cart.entity.ts';
+import type { ProductCartEntity } from './product-cart.entity';
 
 export type CartEntity = {
   totalPrice: number;

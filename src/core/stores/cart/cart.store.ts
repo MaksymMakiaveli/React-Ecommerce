@@ -1,4 +1,5 @@
 import { create } from '@core/stores/_utils';
+import { localStorageService } from '@shared/services';
 import { calculateDiscount } from '@shared/utils';
 import { devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
@@ -11,6 +12,8 @@ type Action = {
   addProductToCart: (product: ProductEntity) => void;
 
   removeProductFromCart: (product: ProductEntity) => void;
+
+  reset: () => void;
 };
 
 export type CartStore = Store & Action;
@@ -28,15 +31,30 @@ export const useCartStore = create<CartStore>()(
         ...initialState,
 
         addProductToCart: (product) => {
-          const updatedProducts = get().products.map((p) => {
-            if (p.product.id === product.id) {
-              return {
-                ...p,
-                count: p.count + 1,
-              };
-            }
-            return p;
-          });
+          const isIncludeProduct = get().products.some((p) => p.product.id === product.id);
+          let updatedProducts: ProductCartEntity[] = [];
+
+          if (isIncludeProduct) {
+            updatedProducts = get().products.map((p) => {
+              if (p.product.id === product.id && p.count < product.stock) {
+                return {
+                  ...p,
+                  count: p.count + 1,
+                  isAvailable: p.count + 1 < product.stock,
+                };
+              }
+              return p;
+            });
+          } else {
+            updatedProducts = [
+              ...get().products,
+              {
+                product,
+                count: 1,
+                isAvailable: true,
+              },
+            ];
+          }
 
           set((state) => {
             state.products = updatedProducts;
@@ -46,14 +64,19 @@ export const useCartStore = create<CartStore>()(
         },
 
         removeProductFromCart: (product) => {
-          const updatedProducts = get().products.map((p) => {
-            if (p.product.id === product.id) {
-              return {
+          const updatedProducts: ProductCartEntity[] = [];
+
+          get().products.forEach((p) => {
+            if (p.product.id !== product.id) {
+              updatedProducts.push(p);
+            }
+            if (p.product.id === product.id && p.count > 1) {
+              updatedProducts.push({
                 ...p,
                 count: p.count - 1,
-              };
+                isAvailable: p.count - 1 < product.stock,
+              });
             }
-            return p;
           });
 
           set((state) => {
@@ -61,6 +84,11 @@ export const useCartStore = create<CartStore>()(
             state.totalPrice = calculateTotalPrice(updatedProducts);
             state.totalDiscounted = calculateTotalDiscount(updatedProducts);
           });
+        },
+
+        reset: () => {
+          set(initialState);
+          localStorageService.removeItem('cart');
         },
       })),
       {
@@ -80,10 +108,8 @@ const calculateTotalPrice = (products: ProductCartEntity[]) => {
 
 const calculateTotalDiscount = (products: ProductCartEntity[]) => {
   return products.reduce((acc, product) => {
-    const totalProductDiscount = calculateDiscount(
-      product.product.price * product.count,
-      product.product.discountPercentage * product.count
-    );
+    const price = product.product.price * product.count;
+    const totalProductDiscount = calculateDiscount(price, product.product.discountPercentage);
 
     return acc + Number(totalProductDiscount);
   }, 0);

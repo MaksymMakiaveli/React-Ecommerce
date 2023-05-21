@@ -38,8 +38,6 @@ export const SigninForm = () => {
     });
   };
 
-  console.log();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormInput label="Username" name="username" register={register} errors={errors} />
