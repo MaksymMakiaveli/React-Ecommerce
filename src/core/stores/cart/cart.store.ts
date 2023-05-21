@@ -13,6 +13,8 @@ type Action = {
 
   removeProductFromCart: (product: ProductEntity) => void;
 
+  completePurchase: () => void;
+
   reset: () => void;
 };
 
@@ -21,6 +23,7 @@ export type CartStore = Store & Action;
 const initialState: Store = {
   totalPrice: 0,
   totalDiscounted: 0,
+  totalCount: 0,
   products: [],
 };
 
@@ -60,6 +63,7 @@ export const useCartStore = create<CartStore>()(
             state.products = updatedProducts;
             state.totalPrice = calculateTotalPrice(updatedProducts);
             state.totalDiscounted = calculateTotalDiscount(updatedProducts);
+            state.totalCount = updatedProducts.length;
           });
         },
 
@@ -83,7 +87,12 @@ export const useCartStore = create<CartStore>()(
             state.products = updatedProducts;
             state.totalPrice = calculateTotalPrice(updatedProducts);
             state.totalDiscounted = calculateTotalDiscount(updatedProducts);
+            state.totalCount = updatedProducts.length;
           });
+        },
+
+        completePurchase: () => {
+          set(initialState);
         },
 
         reset: () => {

@@ -4,5 +4,7 @@ export type CartEntity = {
   totalPrice: number;
   totalDiscounted: number;
 
+  totalCount: number;
+
   products: ProductCartEntity[];
 };
