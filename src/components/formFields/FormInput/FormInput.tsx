@@ -7,6 +7,7 @@ import cl from 'classnames';
 import { FormErrorMessage } from '../FormErrorMessage';
 import { FormLabel } from '../FormLabel';
 
+import type { InputProps } from '@shared/UI';
 import type { ReactNode } from 'react';
 import type {
   DeepMap,
@@ -19,7 +20,7 @@ import type {
 
 import styles from './FormInput.module.scss';
 
-export type FormInputProps<TFormValues extends FieldValues> = {
+export type FormInputProps<TFormValues extends FieldValues> = InputProps & {
   name: FieldPath<TFormValues>;
   label?: ReactNode;
   rules?: RegisterOptions;
@@ -47,8 +48,8 @@ export const FormInput = <TFormValues extends FieldValues>(props: FormInputProps
         name={name}
         aria-invalid={hasError}
         className={styles.formInput}
-        {...restProps}
         {...(register && register(name, rules))}
+        {...restProps}
       />
       <ErrorMessage
         errors={errors || []}

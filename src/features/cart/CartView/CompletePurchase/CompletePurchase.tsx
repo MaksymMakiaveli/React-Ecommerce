@@ -1,6 +1,8 @@
 import { useCartStore } from '@core/stores';
 import { useModalState } from '@hooks';
-import { Button, CartPlusIcon, Modal } from '@shared/UI';
+import { Button, CartPlusIcon } from '@shared/UI';
+
+import { PurchaseModal } from '../PurchaseModal';
 
 import type { CartStore } from '@core/stores';
 
@@ -18,9 +20,7 @@ export const CompletePurchase = () => {
         icon={<CartPlusIcon />}
         onClick={onOpen}
       ></Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        HI
-      </Modal>
+      <PurchaseModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

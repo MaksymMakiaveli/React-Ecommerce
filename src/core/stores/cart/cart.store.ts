@@ -13,6 +13,8 @@ type Action = {
 
   removeProductFromCart: (product: ProductEntity) => void;
 
+  completePurchase: () => void;
+
   reset: () => void;
 };
 
@@ -87,6 +89,10 @@ export const useCartStore = create<CartStore>()(
             state.totalDiscounted = calculateTotalDiscount(updatedProducts);
             state.totalCount = updatedProducts.length;
           });
+        },
+
+        completePurchase: () => {
+          set(initialState);
         },
 
         reset: () => {

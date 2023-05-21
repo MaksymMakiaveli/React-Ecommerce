@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { Portal } from '@shared/UI';
+import { CloseIcon, Portal } from '@shared/UI';
 import { useGetClassWithPrefix } from '@shared/UI/_hooks';
 import cl from 'classnames';
 
@@ -11,6 +11,8 @@ import './Modal.scss';
 export type ModalProps = {
   children: ReactNode;
 
+  actions?: ReactNode;
+
   isOpen: boolean;
 
   onClose: () => void;
@@ -20,14 +22,27 @@ export type ModalProps = {
   style?: CSSProperties;
 
   title?: ReactNode;
+
+  size?: 'sm' | 'md' | 'lg';
 };
 
 export const Modal = (props: ModalProps) => {
-  const { children, isOpen = false, className, style, onClose, title } = props;
+  const {
+    children,
+    isOpen = false,
+    className,
+    style,
+    onClose,
+    title,
+    actions,
+    size = 'md',
+  } = props;
 
   const { rootClass, appendClass } = useGetClassWithPrefix('modal');
 
-  const classes = cl(rootClass, className);
+  const classes = cl(rootClass, className, appendClass(`--${size}`), {
+    [appendClass('--open')]: isOpen,
+  });
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === 'Escape' ? onClose() : null);
@@ -42,14 +57,18 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal wrapperId="ui-modal-portal">
       <div className={classes} style={style}>
-        <div className={appendClass('-content')}>
-          <div>
-            <span>{title}</span>
+        <div className={appendClass('-container')}>
+          <div className={appendClass('-header')}>
+            <span className={appendClass('-title')}>{title}</span>
+            <span className={appendClass('-close-icon')} onClick={onClose}>
+              <CloseIcon />
+            </span>
           </div>
-          {children}
+          <div className={appendClass('-content')}>{children}</div>
+          <div className={appendClass('-actions')}>{actions}</div>
         </div>
 
-        <div className={appendClass('-backdrop')} />
+        <div className={appendClass('-backdrop')} onClick={onClose}></div>
       </div>
     </Portal>
   );
