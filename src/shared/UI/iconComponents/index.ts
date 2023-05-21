@@ -1,5 +1,6 @@
 export * from './CartIcon';
 export * from './CartPlusIcon';
+export * from './CloseIcon';
 export * from './DoorExitIcon';
 export * from './HeartIcon';
 export * from './HouseIcon';
