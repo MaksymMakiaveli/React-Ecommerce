@@ -7,6 +7,7 @@ export const HeartIcon = (props: SVGProps<SVGSVGElement>) => (
     height="1em"
     fill="none"
     color="#637381"
+    viewBox="0 0 20 20"
     {...props}
   >
     <path

@@ -10,6 +10,10 @@ export class TokenStorageService extends LocalStorageService {
   setToken(token: string) {
     this.setItem(this.storageKey, token);
   }
+
+  removeToken() {
+    this.removeItem(this.storageKey);
+  }
 }
 
 export const tokenStorageService = new TokenStorageService();

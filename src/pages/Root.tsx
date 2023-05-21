@@ -5,6 +5,8 @@ import { routes } from '@core/routes';
 import { AuthLayout, MainLayout } from '@layouts';
 
 import { authRoute } from './Auth';
+import { cartRouter } from './Cart';
+import { productRoute } from './Product';
 
 const router = createBrowserRouter([
   {
@@ -16,13 +18,11 @@ const router = createBrowserRouter([
     ),
 
     children: [
+      productRoute,
+      cartRouter,
       {
         path: '/favorite',
         element: <h1>Favorite</h1>,
-      },
-      {
-        path: routes.cart.root,
-        element: <h1>Cart</h1>,
       },
     ],
   },

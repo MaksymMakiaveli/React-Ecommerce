@@ -8,14 +8,21 @@ export const create = (<T extends unknown>(f: StateCreator<T> | undefined) => {
   if (f === undefined) return create;
   const store = _create(f);
   const initialState = store.getState();
-  resetters.push(() => {
-    store.setState(initialState, true);
-  });
+  // @ts-ignore
+  if ('reset' in initialState && typeof initialState.reset === 'function') {
+    resetters.push(() => {
+      // store.setState(initialState, true);
+      // @ts-ignore
+      initialState.reset();
+    });
+  }
+
   return store;
 }) as typeof _create;
 
 export const resetAllStores = () => {
   for (const resetter of resetters) {
+    console.log(resetters);
     resetter();
   }
 };

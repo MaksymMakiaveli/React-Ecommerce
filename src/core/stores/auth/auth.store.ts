@@ -1,11 +1,11 @@
-import { HttpService } from '@core/services/HttpService';
+import { signinRepository } from '@core/repositories/auth';
 import { tokenStorageService } from '@core/services/TokenStorage';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 import { create, resetAllStores } from '../_utils';
 
-import type { SigninDto, SigninEntity } from '@core/repositories/auth';
+import type { SigninDto } from '@core/repositories/auth';
 
 type State = {
   isLoginLoading: boolean;
@@ -18,7 +18,7 @@ type State = {
 type Action = {
   login: (dto: SigninDto) => Promise<void>;
 
-  logout: () => void;
+  logout: () => Promise<void>;
 };
 
 export type AuthState = State & Action;
@@ -29,26 +29,25 @@ const initialState: State = {
   isLoggedIn: !!tokenStorageService.getToken(),
 };
 
-const httpService = new HttpService('auth');
-
 export const useAuthStore = create<AuthState>()(
   devtools(
     immer((set) => ({
       ...initialState,
       login: async (dto: SigninDto) => {
         try {
-          const response = await httpService.post<SigninEntity>('login', dto);
+          const response = await signinRepository.signin(dto);
           tokenStorageService.setToken(response.data.token);
-          set({ isLoginLoading: true });
+          set({ isLoginLoading: true, isLoggedIn: true });
         } catch (e) {
-          set({ isLoginLoading: false });
+          set({ isLoginLoading: false, isLoggedIn: false });
         }
       },
 
-      logout: () => {
-        console.log('logout');
-
+      logout: async () => {
+        tokenStorageService.removeToken();
         resetAllStores();
+        set({ isLoggedIn: false });
+        return Promise.resolve();
       },
     })),
     { name: 'AuthStore' }
