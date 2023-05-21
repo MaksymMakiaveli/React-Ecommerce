@@ -4,13 +4,13 @@ export class LocalStorageService {
   public getItem<T>(key: string): T | null {
     const data: string | null = this.storage.getItem(key);
 
-    if (data !== null) return JSON.parse(data) as T;
+    if (data !== null) return JSON.parse(data).value as T;
 
     return null;
   }
 
   public setItem<T>(key: string, value: T): void {
-    this.storage.setItem(key, JSON.stringify(value));
+    this.storage.setItem(key, JSON.stringify({ value }));
   }
 
   public removeItem(key: string): void {

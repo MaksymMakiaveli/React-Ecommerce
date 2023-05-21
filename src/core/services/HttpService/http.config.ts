@@ -1,7 +1,6 @@
-import { localStorageService } from '@shared/services';
 import axios from 'axios';
 
-const http = axios.create({
+export const http = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
     Accept: 'application/json',
@@ -10,8 +9,6 @@ const http = axios.create({
 });
 
 const authInterceptor = (config: any) => {
-  const accessToken = localStorageService.getItem('access_token');
-  console.log(accessToken);
   return config;
 };
 

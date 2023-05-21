@@ -1,45 +1,33 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 
-import viteLogo from '/vite.svg';
+import { useThemeStore } from '@core/stores';
+import { localStorageService } from '@shared/services';
+import { Loader } from '@shared/UI';
 
-import reactLogo from './assets/react.svg';
+import { Root } from './pages';
 
-import './App.css';
+import type { ThemeStore } from '@core/stores';
 
-function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+const themeSelector = (state: ThemeStore) => [state.setCurrentTheme];
+
+export function App() {
+  const [setCurrentTheme] = useThemeStore(themeSelector);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
+    const themeFromLocalStorage = localStorageService.getItem<'dark' | 'light'>('current_theme');
+
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+    if (themeFromLocalStorage) {
+      setCurrentTheme(themeFromLocalStorage);
+    } else {
+      setCurrentTheme(theme);
+    }
   }, []);
 
-  const handleChangeTheme = () => {
-    const thm = theme === 'light' ? 'dark' : 'light';
-
-    document.documentElement.setAttribute('data-theme', thm);
-    setTheme(thm);
-  };
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={handleChangeTheme}>count is {theme}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Suspense fallback={<Loader />}>
+      <Root />
+    </Suspense>
   );
 }
-
-export default App;
