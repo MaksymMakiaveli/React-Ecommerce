@@ -27,10 +27,8 @@ Axios, Zustand, React-hook-form, and dummyjson for the API.
 - Authentication: The project incorporates user authentication to ensure secure
   access to features such as cart management (For auth you need to find a user
   credentials in dummyjson)
-    -
-        1. username: **kminchelle**
-    -
-        1. password: **0lelplR**
+    - username: kminchelle
+    - password: 0lelplR
 
 ### Folder Structure
 
