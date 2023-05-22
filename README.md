@@ -1,20 +1,34 @@
 ## E-commerce Project
 
-This is the e-commerce pet project created with React and Typescript.
+This project is an e-commerce application developed using React, Typescript,
+Axios, Zustand, React-hook-form, and dummyjson for the API.
 
 ### Technologies used
 
-- **Axios**
-- **Zustand**
-- **React-hook-form**
-- **Zod**
-- **React-router-dom**
+- [**React**](https://uk.legacy.reactjs.org/)
+- [**Typescript**](https://www.typescriptlang.org/)
+- [**Axios**](https://axios-http.com/ru/docs/intro)
+- [**Zustand**](https://zustand-demo.pmnd.rs/)
+- [**React-hook-form**](https://react-hook-form.com/)
+- [**Zod**](https://github.com/colinhacks/zod)
+- [**React-router-dom**](https://reactrouter.com/en/main)
+- [**dummyjson**](https://dummyjson.com/)
 
 ### Features
 
-- User authentication
-- Add products to the shopping cart
-- Proceed to checkout and complete the purchase
+- Viewing Products: Users can explore a variety of products available for
+  purchase.
+- Cart Functionality: Users can add products to their cart while browsing the
+  website.
+- Purchase Completion: Users can proceed to complete the purchase process after
+  adding items to their cart.
+- Authentication: The project incorporates user authentication to ensure secure
+  access to features such as cart management (For auth you need to find a user
+  credentials in dummyjson)
+    -
+        1. username: **kminchelle**
+    -
+        1. password: **0lelplR**
 
 ### Folder Structure
 
@@ -40,3 +54,30 @@ This is the e-commerce pet project created with React and Typescript.
     - **styles/**: Contains CSS or SCSS files for styling the application.
 - **App.tsx**: The main entry point of the application.
 - **index.tsx**: The entry point of the React application
+
+### Setup information
+
+1. Clone the project
+    ```bash
+      git clone https://github.com/MaksymMakiaveli/React-Ecommerce.git
+    ```
+2. Ensure that you have Node.js and npm (Node Package Manager) installed on your
+   machine.
+3. Install the dependencies
+    ```bash
+      npm install
+   
+      or
+   
+      yarn install
+    ```
+4. Once the installation is complete, you can start the development server
+   by running the following command:
+    ```bash
+      npm run dev
+   
+      or
+   
+      yarn dev
+    ```
+

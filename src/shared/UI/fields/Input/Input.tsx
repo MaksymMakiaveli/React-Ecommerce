@@ -3,16 +3,18 @@ import { forwardRef } from 'react';
 import { useGetClassWithPrefix } from '@shared/UI/_hooks';
 import cl from 'classnames';
 
-import type { HTMLAttributes, ReactElement } from 'react';
+import type { InputHTMLAttributes,ReactElement  } from 'react';
 
 import './Input.scss';
 
-export type InputProps = HTMLAttributes<HTMLInputElement> & {
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   prefixIcon?: ReactElement;
+
+  suffixIcon?: ReactElement;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { prefixIcon, className, ...restProps } = props;
+  const { prefixIcon, suffixIcon, className, ...restProps } = props;
 
   const { rootClass, appendClass } = useGetClassWithPrefix('input');
 
@@ -26,14 +28,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <span className={appendClass('-prefix')}>{prefixIcon}</span>
   ) : null;
 
-  const withPrefix = (
-    <div className={appendClass(['-wrapper', '-wrapper--with-prefix'])}>
+  const suffixElement = suffixIcon ? (
+    <span className={appendClass('-suffix')}>{suffixIcon}</span>
+  ) : null;
+
+  const additionalClasses = cl(appendClass('-wrapper'), {
+    [appendClass('--with-suffix')]: suffixIcon,
+    [appendClass('--with-prefix')]: prefixIcon,
+  });
+
+  const withAdditionalElement = (
+    <div className={additionalClasses}>
       {prefixElement}
       {simpleElement}
+      {suffixElement}
     </div>
   );
 
-  const element = prefixIcon ? withPrefix : simpleElement;
+  const element = prefixIcon || suffixIcon ? withAdditionalElement : simpleElement;
 
   return <>{element}</>;
 });
